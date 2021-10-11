@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png"/>
+</head>
+<body>
+    {{> header}}
+    <main>
+        <div class="car">
+            <h2>{{car.name}} - {{car.model}}</h2>
+            <p><b>Type:</b> {{car.type}}</p>
+            <p><b>Class:</b> {{car.class}}</p>
+            <img src="/img/{{car.img_url}}" alt="{{car.img_url}}" width="495">
+        </div>
+        <form action="/cars/{{car._id}}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="model" placeholder="Model">
+            <input type="text" name="type" placeholder="Type">
+            <input type="text" name="class" placeholder="Class">
+            <input type="file" name="img_url">
+            <input type="hidden" name="_method" value="PUT">
+            <button><b>Update</b></button>
+        </form>
+    </main>
+    {{> footer}}
+</body>
+</html>

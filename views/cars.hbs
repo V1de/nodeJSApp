@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png" />
+</head>
+<body>
+    {{> header}}
+    <main>
+            <form action="/cars" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Name">
+                <input type="text" name="model" placeholder="Model">
+                <input type="text" name="type" placeholder="Type">
+                <input type="text" name="class" placeholder="Class">
+                <input type="file" name="img_url">
+                <button value="OK"><b>Add</b></button>
+            </form>
+            <ul class="cars">
+                {{#each carsArr}}
+                    <li>
+                        <a href="/cars/{{_id}}">{{name}} - {{model}}</a>
+                        <form action="/cars/{{_id}}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <a href="/cars/{{_id}}/edit"><img src="/img/edit-icon.png" alt="edit" width="20"></a>
+                            <button><img src="/img/delete-icon.png" alt="delete" width="20"></button>
+                        </form>
+                        {{!-- <button title="edit" class="edit-button">Edit</button> --}}
+                    </li>
+                {{/each}}
+            </ul>
+    </main>
+    {{> footer}}
+</body>
+</html>
